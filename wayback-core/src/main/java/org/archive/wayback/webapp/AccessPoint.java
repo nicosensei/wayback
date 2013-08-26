@@ -852,13 +852,13 @@ implements ShutdownListener {
      * Override this method (WITH EXTREME CAUTION) if the default behavior doesn't suit your needs.
      * @param wbRequest the Wayback request
      * @param closest the closest {@link CaptureSearchResult}
-     * @param additionalParams anything needed
+     * @param originalClosest see {@link #handleRequest(HttpServletRequest, HttpServletResponse)}
      * @return true if we should redirect, false to proceed to rendering
      */
     protected boolean shouldRedirect(
             WaybackRequest wbRequest,
             CaptureSearchResult closest,
-            Object... additionalParams) {
+            CaptureSearchResult originalClosest) {
         // Redirect to url for the actual closest capture
         // return ((closest != originalClosest) && !closest.getCaptureTimestamp().equals(originalClosest.getCaptureTimestamp()))
         return !wbRequest.getReplayTimestamp().startsWith(closest.getCaptureTimestamp());
